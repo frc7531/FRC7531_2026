@@ -1,0 +1,75 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.312539229671896,
+        "y": 6.085777460770328
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.805686746987951,
+        "y": 6.460951807228916
+      },
+      "isLocked": false,
+      "linkedName": "BDepotNeutral"
+    },
+    {
+      "anchor": {
+        "x": 5.7784819277108435,
+        "y": 7.41845934379458
+      },
+      "prevControl": {
+        "x": 6.456,
+        "y": 7.400734939759036
+      },
+      "nextControl": {
+        "x": 4.748146647251104,
+        "y": 7.445413722651576
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.5732667617689007,
+        "y": 7.41845934379458
+      },
+      "prevControl": {
+        "x": 2.6345333549035996,
+        "y": 7.443830516957
+      },
+      "nextControl": null,
+      "isLocked": true,
+      "linkedName": "BDepotTrench"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0551181102362126,
+      "rotationDegrees": 0.658833557086183
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -0.8524713846903069
+  },
+  "reversed": false,
+  "folder": "Blue Depot",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 139.63546342690267
+  },
+  "useDefaultConstraints": false
+}
