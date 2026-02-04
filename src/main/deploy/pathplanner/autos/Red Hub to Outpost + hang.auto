@@ -1,0 +1,31 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Red Hub to Outpost"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Red Outpost to Shooting "
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Red Shooting to Hanging"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
