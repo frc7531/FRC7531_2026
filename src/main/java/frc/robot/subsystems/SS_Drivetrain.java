@@ -50,6 +50,7 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.LimelightHelpers;
@@ -131,8 +132,9 @@ public class SS_Drivetrain extends TunerSwerveDrivetrain implements Subsystem {
     Field2d targetField = new Field2d();
 
     // Limelight Estimation
-    NetworkTable limelightTableAntigua = NetworkTableInstance.getDefault().getTable("limelight-antigua");
-    NetworkTable limelightTableBarbuda = NetworkTableInstance.getDefault().getTable("limelight-barbuda");
+    public NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable limelightTableAntigua = inst.getTable("limelight-antigua");
+    NetworkTable limelightTableBarbuda = inst.getTable("limelight-barbuda");
     double[] limelightEstimateAntigua = new double[6];
     double[] limelightEstimateBarbuda = new double[6];
     double stdDev;
@@ -172,7 +174,7 @@ public class SS_Drivetrain extends TunerSwerveDrivetrain implements Subsystem {
     public double aimingComponent;
     public double driftingComponent;
 
-    public NetworkTableEntry driveOn = NetworkTableInstance.getDefault().getTable("Drivetrain").getEntry("drivetrain");
+    public NetworkTableEntry driveOn = inst.getTable("Drivetrain").getEntry("drivetrain");
 
     public enum ShootMode {
         SCORE,
@@ -267,7 +269,7 @@ public class SS_Drivetrain extends TunerSwerveDrivetrain implements Subsystem {
         if (Utils.isSimulation()) {
             startSimThread();
         }
-
+        driveOn.setBoolean(true);
         configureAutoBuilder();
     }
 
@@ -295,6 +297,7 @@ public class SS_Drivetrain extends TunerSwerveDrivetrain implements Subsystem {
             startSimThread();
         }
         driveOn.setBoolean(true);
+        applyRequest(null).execute();
         configureAutoBuilder();
         posePublisher = poseTable.getStructTopic("Pose Estimator", Pose2d.struct).publish();
     }
@@ -367,13 +370,22 @@ public class SS_Drivetrain extends TunerSwerveDrivetrain implements Subsystem {
      * @param request Function returning the request to apply
      * @return Command to run
      */
+
+    public SwerveRequest idleRequest = new SwerveRequest.Idle();
+
     public Command applyRequest(Supplier<SwerveRequest> request) {
-        if(driveOn.getBoolean(true))
-        {
-           return run(() -> this.setControl(request.get())); 
-        }
-        else
-            return run(() -> this.setControl(new SwerveRequest.Idle()));
+        return run(() -> {
+            if(driveOn.getBoolean(false))
+            {
+                this.setControl(request.get()); 
+                System.out.println("Apply Request"); 
+            }
+            else
+            {
+                this.setControl(idleRequest); 
+                System.out.println("Idling");
+            }
+        });
     }
 
     /**
