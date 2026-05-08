@@ -12,7 +12,7 @@ import frc.robot.subsystems.SS_Shooter;
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class AutoShoot_cmd extends Command {
   public SS_Shooter shooter;
-  public SS_Hopper hopper;
+  //public SS_Hopper hopper;
   //public Timer timer2 = new Timer();
   //public double timerSeconds = 10;
   
@@ -43,6 +43,6 @@ public class AutoShoot_cmd extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

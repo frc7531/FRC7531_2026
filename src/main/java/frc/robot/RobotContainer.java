@@ -265,6 +265,8 @@ public class RobotContainer {
         joystick2.leftBumper().whileTrue(manualRollersForward);
         joystick2.rightBumper().whileTrue(manualRollersReverse);
 
+        joystick2.b().toggleOnTrue(startThroatCommand).toggleOnTrue(autoShoot);
+
         joystick2.start().whileTrue(hangupMan);
         joystick2.y().whileTrue(hangReturnManual);
         
