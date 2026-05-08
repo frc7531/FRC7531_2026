@@ -11,7 +11,6 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.SS_Drivetrain;
 import frc.robot.subsystems.SS_Turret;
 
@@ -41,7 +40,6 @@ public class autoAimTurretToTarget extends Command {
   String flipStatus = "";
 
   public SwerveRequest.RobotCentric driverequest = new SwerveRequest.RobotCentric();
-  public CommandXboxController controller;
   public CANcoder encoder;
 
   public autoAimTurretToTarget(SS_Drivetrain ss_drivetrain, SS_Turret ss_turret) {

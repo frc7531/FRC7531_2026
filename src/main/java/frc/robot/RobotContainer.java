@@ -109,9 +109,9 @@ public class RobotContainer {
     private final SS_Hanger hanger = new SS_Hanger();
     private final SS_Vision vision = new SS_Vision();
 
-    public aimTurretToTarget aimCommand = new aimTurretToTarget(drivetrain, turret);
+    public aimTurretToTarget aimCommand = new aimTurretToTarget(drivetrain, turret, joystick2);
     public alignTower alignTowerCommand = new alignTower(drivetrain);
-    public manualTurret manualTurret = new manualTurret(turret);
+    public manualTurret manualTurret = new manualTurret(turret, joystick2);
     public stopTurret stopCommand = new stopTurret(turret);
     public manualShooter shootCommand = new manualShooter(shooter);
     public stopThroat stopThroatCommand = new stopThroat(throat, hopper);
@@ -139,7 +139,7 @@ public class RobotContainer {
     public lowerHood lowerHoodCommand = new lowerHood(shooter);
     public manualFoldIntake_cmd manualPivotUp = new manualFoldIntake_cmd(intake);
     public manualUnfoldIntake_cmd manualPivotDown = new manualUnfoldIntake_cmd(intake);
-    public manualHood_cmd manualHood = new manualHood_cmd(shooter);
+    public manualHood_cmd manualHood = new manualHood_cmd(shooter, joystick2);
     public hopperDefault_cmd hopperDefault = new hopperDefault_cmd(hopper);
     public HangerDefault_cmd hangerDefault = new HangerDefault_cmd(hanger);
    

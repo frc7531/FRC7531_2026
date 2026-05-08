@@ -13,15 +13,16 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 public class manualHood_cmd extends Command {
   public SS_Shooter shooter;
 
-  private final CommandXboxController joystick2 = new CommandXboxController(1);
+  private CommandXboxController joystick2;
 
   private double hoodPosition = 0;
 
   /** Creates a new lowerHood. */
-  public manualHood_cmd(SS_Shooter ss_shooter) {
+  public manualHood_cmd(SS_Shooter ss_shooter, CommandXboxController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ss_shooter);
     this.shooter = ss_shooter;
+    this.joystick2 = controller;
   }
 
   // Called when the command is initially scheduled.

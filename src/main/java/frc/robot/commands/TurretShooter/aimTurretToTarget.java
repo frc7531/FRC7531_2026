@@ -4,8 +4,6 @@
 
 package frc.robot.commands.TurretShooter;
 
-import static edu.wpi.first.units.Units.*;
-
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
@@ -13,7 +11,6 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -26,7 +23,7 @@ public class aimTurretToTarget extends Command {
   public SS_Drivetrain drivetrain;
   public SS_Turret turret;
 
-  private final CommandXboxController joystick2 = new CommandXboxController(1);
+  private CommandXboxController joystick2;
 
   PIDController rController = new PIDController(7, 0, 0); //3.2 0.2 0.002 // 1.7, 1.2, 0
   double pidSpeed;
@@ -50,19 +47,19 @@ public class aimTurretToTarget extends Command {
   double velocityAdjustment = 0;
 
   public SwerveRequest.RobotCentric driverequest = new SwerveRequest.RobotCentric();
-  public CommandXboxController controller;
   public CANcoder encoder;
 
   public NetworkTableInstance inst = NetworkTableInstance.getDefault();
   public NetworkTableEntry aligning = inst.getTable("Shooter").getEntry("Aligning Status");
   public NetworkTableEntry turretEntry = inst.getTable("Shooter").getEntry("Turret Angle");
 
-  public aimTurretToTarget(SS_Drivetrain ss_drivetrain, SS_Turret ss_turret) {
+  public aimTurretToTarget(SS_Drivetrain ss_drivetrain, SS_Turret ss_turret, CommandXboxController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ss_turret);
     this.drivetrain = ss_drivetrain;
     this.turret = ss_turret;
     this.encoder = ss_turret.encoder;
+    this.joystick2 = controller;
     aligning.setBoolean(false);
   }
 

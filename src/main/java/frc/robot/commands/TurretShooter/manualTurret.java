@@ -13,10 +13,11 @@ public class manualTurret extends Command {
   public SS_Turret turret;
   public double speed;
   private double rightX;
-  private final CommandXboxController joystick2 = new CommandXboxController(1);
-  public manualTurret(SS_Turret ss_turret) {
+  private CommandXboxController joystick2;
+  public manualTurret(SS_Turret ss_turret, CommandXboxController controller) {
     addRequirements(ss_turret);
     this.turret = ss_turret;
+    this.joystick2 = controller;
   }
 
   // Called when the command is initially scheduled.
@@ -27,10 +28,10 @@ public class manualTurret extends Command {
   @Override
   public void execute() {
     rightX = -joystick2.getRightX();
-    if (Math.abs(rightX ) > 0.1) { // Stick deadzone
+    if (Math.abs(rightX) > 0.1) { // Stick deadzone
     speed = rightX * 0.2;
     } else {
-    speed = rightX * 0;
+    speed = 0;
     }
     SmartDashboard.putNumber("manualSpeed", speed);
 
