@@ -60,6 +60,7 @@ import frc.robot.commands.TurretShooter.AutoShoot_cmd;
 import frc.robot.commands.TurretShooter.aimTurretToTarget;
 import frc.robot.commands.TurretShooter.autoAimTurretToTarget;
 import frc.robot.commands.TurretShooter.fireShooter;
+import frc.robot.commands.TurretShooter.hardcodeBasketball_cmd;
 import frc.robot.commands.TurretShooter.lobShooter;
 import frc.robot.commands.TurretShooter.manualHood_cmd;
 import frc.robot.commands.TurretShooter.manualShooter;
@@ -151,6 +152,7 @@ public class RobotContainer {
     public HangLevel1_cmd hangeLevel1Manual = new HangLevel1_cmd(hanger);
     public HangReturnManual_cmd hangReturnManual = new HangReturnManual_cmd(hanger);
     public HangUpManual_cmd hangupMan = new HangUpManual_cmd(hanger);
+    public hardcodeBasketball_cmd shootBasket = new hardcodeBasketball_cmd(shooter, throat, hopper);
 
     public AutoHardcodeDepot_cmd autoDepot = new AutoHardcodeDepot_cmd(turret, shooter, drivetrain);
     public AutoHardcodeHuman_cmd autoHuman = new AutoHardcodeHuman_cmd(turret, shooter, drivetrain);
@@ -269,6 +271,9 @@ public class RobotContainer {
 
         joystick2.start().whileTrue(hangupMan);
         joystick2.y().whileTrue(hangReturnManual);
+
+        joystick2.povDown().whileTrue(autoRev);
+        joystick2.povLeft().whileTrue(shootBasket);
         
         drivetrain.registerTelemetry(logger::telemeterize);
     }
