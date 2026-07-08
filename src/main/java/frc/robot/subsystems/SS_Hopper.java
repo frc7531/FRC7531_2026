@@ -36,7 +36,7 @@ public class SS_Hopper extends SubsystemBase {
 
   public void carWashOn()
   {
-    m_carWash.set(-1);
+    m_carWash.set(-.1);
   }
 
   public void carWashBack()

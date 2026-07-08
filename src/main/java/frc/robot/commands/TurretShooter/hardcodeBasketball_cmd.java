@@ -39,7 +39,7 @@ public class hardcodeBasketball_cmd extends Command {
 
     shooter.hoodLifter.setPosition(0.3);
 
-    throat.throatMotor.set(1);
+    throat.throatMotor.set(0.7);
     hopper.hotDogRollersOn();
     hopper.carWashOn();
   }
